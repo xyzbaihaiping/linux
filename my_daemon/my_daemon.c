@@ -1,3 +1,9 @@
+#include <stdio.h> 
+#include <signal.h> 
+#include <unistd.h> 
+#include <stdlib.h> 
+#include <fcntl.h> 
+#include <sys/stat.h> 
 
 void creat_daemon()
 {
@@ -12,7 +18,7 @@ void creat_daemon()
 	{
 		exit(0);
 	}
-	set_sid();
+	setsid();
 	sa.sa_handler=SIG_IGN;
 	sigemptyset(&sa.sa_mask); 
 	sa.sa_flags = 0; 
@@ -32,7 +38,7 @@ int main()
 	creat_daemon();
 	while(1)
 	{
-		sleep();
+		sleep(1);
 	}
 
 }
